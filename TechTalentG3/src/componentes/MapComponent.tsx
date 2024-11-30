@@ -1,18 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import L, { LatLngExpression } from 'leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
+import { LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { events } from '../data'; // Asegúrate de importar los makers desde data.js
-
-import '../estilos/MapComponent.css'
-
-const customIcon = L.icon({
-  iconUrl: 'myLocationPointer.png', // Ruta de la imagen del icono
-  iconSize: [38, 38], // Tamaño del icono [ancho, alto]
-  iconAnchor: [19, 38], // Punto donde se ancla el icono en el mapa
-  popupAnchor: [0, -38], // Punto donde se ancla el popup
-});
-
+import { neighborhoods } from '../data'; // Asegúrate de importar los makers desde data.js
 
 interface MapComponentProps {
   startDate: string;
@@ -85,6 +76,16 @@ const MapComponent: React.FC<MapComponentProps> = ({ startDate, endDate }) => {
               {event.name} está en: {event.coordinates[0]}, {event.coordinates[1]}
             </Popup>
           </Marker>
+        ))}
+
+        {/* Zonas coloreadas */}
+        {neighborhoods.map((neighborhood) => (
+            <Polyline 
+            positions={neighborhood.positions} 
+            pathOptions={{ color: neighborhood.color }} 
+          />
+        
+          // <Polyline key={neighborhood.name} bounds={neighborhood.positions} pathOptions={{ color: neighborhood.color }} />
         ))}
       </MapContainer>
     </div>
