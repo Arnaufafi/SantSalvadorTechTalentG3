@@ -1,19 +1,33 @@
+/* Make the button square and fit the icon size (64px) */
 .mute-button {
-    width: 64px;
-    height: 64px;
-    background-color: transparent; /* Fons transparent */
-    border: none; /* Sense vora */
-    cursor: pointer; /* Cursor de mà */
-    outline: none; /* Treu l'outline */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0; /* Elimina el padding per defecte */
-  }
-  
-  .mute-button img {
-    width: 64px;
-    height: 64px;
-    object-fit: contain; /* Assegura que la imatge s'adapti correctament */
-  }
-  
+  width: 50px;  /* Smaller button size */
+  height: 50px;  /* Smaller button size */
+  padding: 0;  /* Remove padding */
+  border: none;  /* Remove border */
+  cursor: pointer;
+  background-color: transparent;  /* Remove background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;  /* Position it absolutely */
+  top: 5%;  /* Align to top with a margin of 5% */
+  right: 5%;  /* Align to right with a margin of 5% */
+}
+
+/* Use icons located in assets/icons/ */
+.mute-button-muted::before {
+  content: url('../assets/icons/mute.png');  /* Path to mute icon */
+  width: 15px;  /* Reduce icon size by 50% */
+  height: 15px;  /* Reduce icon size by 50% */
+}
+
+.mute-button-unmuted::before {
+  content: url('../assets/icons/unmute.png');  /* Path to unmute icon */
+  width: 15px;  /* Reduce icon size by 50% */
+  height: 15px;  /* Reduce icon size by 50% */
+}
+
+/* Optional: Add hover effect for better UI interaction */
+.mute-button:hover {
+  opacity: 0.8;
+}

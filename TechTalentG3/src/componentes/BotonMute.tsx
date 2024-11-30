@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../estilos/BotonMute.css';  // Correct path to the BotonMute.css file
 
 const MuteButton: React.FC = () => {
   // Estado para controlar si el audio está muteado o no
@@ -20,15 +21,9 @@ const MuteButton: React.FC = () => {
   return (
     <button
       onClick={toggleMute}
-      style={{
-        padding: '10px 20px',
-        backgroundColor: '#f0f0f0',
-        border: '1px solid #ccc',
-        borderRadius: '5px',
-        cursor: 'pointer',
-      }}
+      className={`mute-button ${isMuted ? 'mute-button-muted' : 'mute-button-unmuted'}`}  // Apply CSS classes
     >
-      {isMuted ? 'Unmute' : 'Mute'}
+      {/* No text here, only the icon will be displayed */}
     </button>
   );
 };

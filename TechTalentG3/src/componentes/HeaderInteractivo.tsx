@@ -3,6 +3,7 @@ import BotonFiltroMeses from "./BotonFiltroMeses"; // Importar el componente del
 import BotonVerFavs from "./BotonVerFavsONo";
 import BarraBusqueda from "./BarraDeBusqueda";
 import BotonMute from "./BotonMute";
+import logo from "../assets/icons/logo.png"; // Importamos el logo desde la carpeta correspondiente
 
 interface HeaderProps {
   monthsToShow: number;
@@ -12,7 +13,7 @@ const Header: React.FC = () => {
   return (
     <header style={styles.header}>
       <div style={styles.logoContainer}>
-        <h1 style={styles.logo}>Eventos Tarragona</h1>
+        <img src={logo} alt="Logo" style={styles.logoImage} /> {/* Mostramos el logo */}
       </div>
       <nav style={styles.nav}>
         <BotonFiltroMeses monthsToShow={1} />
@@ -36,9 +37,15 @@ const styles = {
   },
   logoContainer: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "center", // Alinea el logo verticalmente al centro
+    marginLeft: "5%", // Aplica margen del 5% a la izquierda
   },
-  logo: {
+  logoImage: {
+    width: "50px", // Ajusta el tamaño del logo
+    height: "50px", // Ajusta el tamaño del logo
+    marginRight: "10px", // Espaciado entre el logo y el texto
+  },
+  logoText: {
     fontSize: "24px",
     fontWeight: "bold",
   },
@@ -48,4 +55,4 @@ const styles = {
   },
 };
 
-export default Header;
+export default Header; // Exportamos el componente como "default"
