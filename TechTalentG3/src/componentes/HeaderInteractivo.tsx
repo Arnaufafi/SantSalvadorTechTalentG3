@@ -4,6 +4,7 @@ import BotonVerFavs from "./BotonVerFavsONo";
 import BarraBusqueda from "./BarraDeBusqueda";
 import BotonMute from "./BotonMute";
 import DateRangePicker from "./RangoFecha";
+import "../estilos/Header.css"
 
 interface HeaderProps {
   startDate: string;
@@ -14,9 +15,9 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ startDate, endDate, onStartDateChange, onEndDateChange }) => {
   return (
-    <header style={styles.header}>
-      <div style={styles.logoContainer}>
-        <h1 style={styles.logo}>Eventos Tarragona</h1>
+    <header className="header">
+      <div className="logo-container">
+        <h1 className="logo">Eventos Tarragona</h1>
         <DateRangePicker 
           startDate={startDate}
           endDate={endDate}
@@ -24,8 +25,8 @@ const Header: React.FC<HeaderProps> = ({ startDate, endDate, onStartDateChange, 
           onEndDateChange={onEndDateChange}
         />
       </div>
-      <nav style={styles.nav}>
-      <BotonFiltroMeses
+      <nav className="nav">
+        <BotonFiltroMeses
           monthsToShow={1}
           startDate={startDate}
           endDate={endDate}
@@ -39,35 +40,11 @@ const Header: React.FC<HeaderProps> = ({ startDate, endDate, onStartDateChange, 
           onStartDateChange={onStartDateChange}
           onEndDateChange={onEndDateChange}
         />
-        <BotonVerFavs />
         <BarraBusqueda />
-        <BotonMute />
       </nav>
+      
     </header>
+    
   );
 };
-
-const styles = {
-  header: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "10px 20px",
-    backgroundColor: "#333",
-    color: "white",
-  },
-  logoContainer: {
-    display: "flex",
-    alignItems: "center",
-  },
-  logo: {
-    fontSize: "24px",
-    fontWeight: "bold",
-  },
-  nav: {
-    display: "flex",
-    gap: "15px",
-  },
-};
-
 export default Header;

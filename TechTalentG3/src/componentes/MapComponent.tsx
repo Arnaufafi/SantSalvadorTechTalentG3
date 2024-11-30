@@ -4,6 +4,7 @@ import L, { LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { events } from '../data'; // Asegúrate de importar los makers desde data.js
 import { neighborhoods } from '../data'; // Asegúrate de importar los makers desde data.js
+import '../estilos/MapComponent.css';
 
 const customIcon = L.icon({
   iconUrl: 'myLocationPointer.png', // Ruta de la imagen del icono
@@ -78,9 +79,17 @@ const MapComponent: React.FC<MapComponentProps> = ({ startDate, endDate }) => {
         {/* Marcadores de los eventos filtrados */}
         {filteredEvents.map((event, idx) => (
           <Marker position={event.coordinates} key={idx}>
-            <Popup>
-              <img src={event.imageUrl} />
-              {event.name} está en: {event.coordinates[0]}, {event.coordinates[1]}
+            <Popup className='PopEventos'>
+              <img id="Imagen_PopUp"src={event.imageUrl} />
+              <h3>{event.name}</h3> 
+              <p>está en: {event.coordinates[0]}, {event.coordinates[1]}</p>
+              <a 
+              href={'https://www.google.com/maps?q=${event.coordinates[0]},${event.coordinates[1]}'} 
+              target="_blank" 
+              rel="noopener noreferrer"
+                >
+              Anar-hi
+              </a>
             </Popup>
           </Marker>
         ))}

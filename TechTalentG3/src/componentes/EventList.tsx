@@ -1,12 +1,13 @@
 import React from "react";
-import EventCard from "./EventCard";
-import { Event } from "./Event.ts"; // Ajusta la ruta según tu estructura de proyecto
+import EventCard from "./EventCard"; // Asegúrate de importar correctamente el componente
+import { events } from "../data"; // Importa los datos mock
+import "./EventList.css"
 
-const EventList: React.FC<{ events: Event[] }> = ({ events }) => {
+const EventList: React.FC = () => {
   return (
     <div className="event-list">
-      {events.map((event, index) => (
-        <EventCard key={index} event={event} />
+      {events.map((event) => (
+        <EventCard key={event.name} event={event} />
       ))}
     </div>
   );

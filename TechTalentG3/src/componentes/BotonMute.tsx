@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import "../estilos/BotonMute.css";
 
 const MuteButton: React.FC = () => {
   // Estado para controlar si el audio está muteado o no
@@ -8,8 +9,8 @@ const MuteButton: React.FC = () => {
   const toggleMute = () => {
     setIsMuted(!isMuted);
 
-    // Aquí puedes agregar la lógica para mutear o desmutear el audio si estás usando un elemento de audio real
-    const audioElements = document.querySelectorAll('audio');
+    // Lógica para mutear o desmutear el audio en el documento
+    const audioElements = document.querySelectorAll("audio");
     audioElements.forEach((audio) => {
       if (audio instanceof HTMLAudioElement) {
         audio.muted = !audio.muted;
@@ -18,18 +19,16 @@ const MuteButton: React.FC = () => {
   };
 
   return (
+    <div>
     <button
+      className={`mute-button ${
+        isMuted ? "mute-button-muted" : "mute-button-unmuted"
+      }`}
       onClick={toggleMute}
-      style={{
-        padding: '10px 20px',
-        backgroundColor: '#f0f0f0',
-        border: '1px solid #ccc',
-        borderRadius: '5px',
-        cursor: 'pointer',
-      }}
     >
-      {isMuted ? 'Unmute' : 'Mute'}
-    </button>
+      {/* El contenido del botón ahora se maneja con pseudo-elementos en CSS */}
+    </button>´
+    </div>
   );
 };
 

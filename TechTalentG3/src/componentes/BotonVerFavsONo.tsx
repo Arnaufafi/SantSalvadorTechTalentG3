@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { neighborhoods } from "../data.ts"; // Importa tus datos
-
+import "../estilos/Botonfavs.css"
 const App: React.FC = () => {
   const [favorites, setFavorites] = useState<string[]>([]); // Estado para zonas favoritas
   const [showFavorites, setShowFavorites] = useState(false); // Estado para mostrar solo favoritas
