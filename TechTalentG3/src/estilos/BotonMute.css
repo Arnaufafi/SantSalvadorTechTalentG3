@@ -1,0 +1,19 @@
+.mute-button {
+    width: 64px;
+    height: 64px;
+    background-color: transparent; /* Fons transparent */
+    border: none; /* Sense vora */
+    cursor: pointer; /* Cursor de mà */
+    outline: none; /* Treu l'outline */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0; /* Elimina el padding per defecte */
+  }
+  
+  .mute-button img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain; /* Assegura que la imatge s'adapti correctament */
+  }
+  
