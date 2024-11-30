@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
-import { LatLngExpression } from 'leaflet';
+import L, { LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { events } from '../data'; // Asegúrate de importar los makers desde data.js
 import { neighborhoods } from '../data'; // Asegúrate de importar los makers desde data.js
+
+const customIcon = L.icon({
+  iconUrl: 'myLocationPointer.png', // Ruta de la imagen del icono
+  iconSize: [38, 38], // TamaÃ±o del icono [ancho, alto]
+  iconAnchor: [19, 38], // Punto donde se ancla el icono en el mapa
+  popupAnchor: [0, -38], // Punto donde se ancla el popup
+});
 
 interface MapComponentProps {
   startDate: string;
