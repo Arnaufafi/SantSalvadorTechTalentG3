@@ -39,14 +39,21 @@ const MapComponent: React.FC<MapComponentProps> = ({ startDate, endDate, showFav
     const filtered = events.filter((event) => {
       const eventDate = new Date(event.date);
       const start = new Date(startDate);
-      const end = new Date(endDate);
-
+      const end = endDate ? new Date(endDate) : null;
+    
+      // Si endDate está vacío, filtrar solo por startDate
+      if (!end) {
+        return eventDate >= start && (showFavorites ? event.isFavorite : true);
+      }
+    
+      // Si endDate tiene valor, filtrar por startDate y endDate
       return (
-        eventDate >= start && 
-        eventDate <= end && 
-        (showFavorites ? event.isFavorite : true) // Solo eventos favoritos si showFavorites es true
+        eventDate >= start &&
+        eventDate <= end &&
+        (showFavorites ? event.isFavorite : true)
       );
     });
+    
     setFilteredEvents(filtered);
   }, [startDate, endDate, showFavorites]);
 
@@ -60,7 +67,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ startDate, endDate, showFav
       <MapContainer
         center={[41.124224, 1.240639]}
         zoom={14}
-        style={{ height: '100vh', width: '100%' }}
+        style={{ height: '90vh', width: '100%' }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

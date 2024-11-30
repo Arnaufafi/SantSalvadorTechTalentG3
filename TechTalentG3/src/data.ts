@@ -291,7 +291,7 @@ export const events: Event[] = [
 		date: "2024-12-20",
 		postalCode: "43004", // Serrallo
 		coordinates: [41.12, 1.258], // Coordenadas del Serrallo
-		isFavorite: false, // Agregar esta propiedad
+		isFavorite: true, // Agregar esta propiedad
 		isVisible: true,
 	},
 	{
