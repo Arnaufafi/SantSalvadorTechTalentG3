@@ -18,7 +18,6 @@ function App() {
 
   return ( 
     <div className="mapComponent">
-      <h1>My Map View</h1>
       <Header 
         startDate={startDate} 
         endDate={endDate} 
