@@ -266,7 +266,8 @@ export const events: Event[] = [
 			"Celebración anual de la festividad de Santa Tecla, patrona de Tarragona.",
 		date: "2025-01-21",
 		postalCode: "43003", // Parte Alta
-		coordinates: [41.1185, 1.2531], // Coordenadas de Parte Alta
+		coordinates: [41.1185, 1.2531],
+		 // Coordenadas de Parte Alta
 	},
 	{
 		imageUrl: "/img/concursCastellers.jpg",
