@@ -40,7 +40,7 @@ const RangoFecha: React.FC<RangoFechaProps> = ({
         <input
           type="date"
           id="end-date"
-          value={endDate}
+          value={endDate || ''}
           onChange={(e) => onEndDateChange(e.target.value)}
         />
       </div>

@@ -14,10 +14,31 @@ const App: React.FC = () => {
     );
   };
 
-  // Filtrar las zonas favoritas
-  const filteredNeighborhoods = showFavorites
-    ? neighborhoods.filter((neighborhood) => favorites.includes(neighborhood.name))
-    : neighborhoods;
+  // Filtrar las zonas favoritas y modificar el campo isVisible
+  const updatedEvents = events.map((event) => {
+    if (showFavorites) {
+      // Si estamos mostrando solo las zonas favoritas
+      if (event.isFavorite) {
+        // Si el evento es favorito, lo hacemos visible
+        return {
+          ...event,
+          isVisible: true,
+        };
+      } else {
+        // Si el evento no es favorito, lo hacemos invisible
+        return {
+          ...event,
+          isVisible: false,
+        };
+      }
+    } else {
+      // Si no estamos mostrando solo favoritos, todos los eventos son visibles
+      return {
+        ...event,
+        isVisible: true,
+      };
+    }
+  });
 
   // Cambiar el estado para mostrar todas las zonas o solo las favoritas
   const handleButtonClick = () => {
@@ -31,25 +52,6 @@ const App: React.FC = () => {
           {showFavorites ? "Ver Todas" : "Ver Favoritas"}
         </button>
       </header>
-
-      <div>
-        {filteredNeighborhoods.map((neighborhood) => (
-          <div key={neighborhood.name}>
-            <div
-              style={{
-                backgroundColor: neighborhood.color,
-                padding: "10px",
-                margin: "5px",
-              }}
-            >
-              <h3>{neighborhood.name}</h3>
-              <button onClick={() => toggleFavorite(neighborhood.name)}>
-                {favorites.includes(neighborhood.name) ? "Quitar de Favoritos" : "Añadir a Favoritos"}
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 };

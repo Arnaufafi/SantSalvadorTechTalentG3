@@ -256,6 +256,8 @@ interface Event {
 	date: string; // Formato ISO 8601 (YYYY-MM-DD)
 	postalCode: string;
 	coordinates: [number, number]; // Agrega coordenadas
+	isFavorite: boolean
+	isVisible: boolean
 }
 
 export const events: Event[] = [
@@ -266,7 +268,9 @@ export const events: Event[] = [
 			"Celebración anual de la festividad de Santa Tecla, patrona de Tarragona.",
 		date: "2025-01-21",
 		postalCode: "43003", // Parte Alta
-		coordinates: [41.1185, 1.2531], // Coordenadas de Parte Alta
+		coordinates: [41.1185, 1.2531],
+		isFavorite: false, // Agregar esta propiedad
+		isVisible: true,
 	},
 	{
 		imageUrl: "/img/concursCastellers.jpg",
@@ -276,6 +280,8 @@ export const events: Event[] = [
 		date: "2024-12-27",
 		postalCode: "43001", // Eixample
 		coordinates: [41.116, 1.229], // Coordenadas del Eixample
+		isFavorite: true, // Agregar esta propiedad
+		isVisible: true,
 	},
 	{
 		imageUrl: "/img/cofradiaPescadoresSerrallo.png",
@@ -285,16 +291,19 @@ export const events: Event[] = [
 		date: "2024-12-20",
 		postalCode: "43004", // Serrallo
 		coordinates: [41.12, 1.258], // Coordenadas del Serrallo
+		isFavorite: true, // Agregar esta propiedad
+		isVisible: true,
 	},
 	{
 		imageUrl: "/img/santSalvadorFestaMajor.png",
 		name: "Fiesta mayor (Sant Salvador)",
 		description:
 			"Fiesta en honor a Sant Salvador con actividades populares, música en vivo y tradiciones locales que unen a la comunidad.",
-
 		date: "2025-01-21",
 		postalCode: "43003", 
 		coordinates: [41.161694, 1.241334],
+		isFavorite: true, // Agregar esta propiedad
+		isVisible: true,
 	},
 	{
 		imageUrl: "/img/santMagi.jpg",
@@ -304,17 +313,21 @@ export const events: Event[] = [
 		date: "2024-11-11",
 		postalCode: "43007", // Campclar
 		coordinates: [41.115, 1.233], // Coordenadas de Campclar
+		isFavorite: false, // Agregar esta propiedad
+		isVisible: true,
 	},
 	{
 		imageUrl: "/img/correfocSantSalvador.jpg",
 		name: "Correfoc infantil (Sant Salvador)",
 		description:
 			"Fiesta en honor a Sant Salvador con actividades populares, música en vivo y tradiciones locales que unen a la comunidad.",
-
 		date: "2025-03-21",
 		postalCode: "43003", 
 		coordinates: [41.161734, 1.24364], 
+		isFavorite: true, // Agregar esta propiedad
+		isVisible: true,
 	},
 ];
+
 
 export default Neighborhood;

@@ -11,9 +11,10 @@ interface HeaderProps {
   endDate: string;
   onStartDateChange: (date: string) => void;
   onEndDateChange: (date: string) => void;
+  toggleFavorites: () => void; // Nueva prop para controlar el botón de favoritos
 }
 
-const Header: React.FC<HeaderProps> = ({ startDate, endDate, onStartDateChange, onEndDateChange }) => {
+const Header: React.FC<HeaderProps> = ({ startDate, endDate, onStartDateChange, onEndDateChange, toggleFavorites }) => {
   return (
     <header className="header">
       <div className="logo-container">
@@ -40,6 +41,8 @@ const Header: React.FC<HeaderProps> = ({ startDate, endDate, onStartDateChange, 
           onStartDateChange={onStartDateChange}
           onEndDateChange={onEndDateChange}
         />
+        <button onClick={toggleFavorites}>Ver Favoritas</button> {/* Botón de favoritos */}
+        {/* <BotonVerFavs /> */}
         <BarraBusqueda />
       </nav>
       

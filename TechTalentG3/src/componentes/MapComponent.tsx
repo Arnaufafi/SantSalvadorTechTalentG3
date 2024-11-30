@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
-import L, { LatLngExpression } from 'leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Polyline, Polygon } from 'react-leaflet';
+import { LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { events } from '../data'; // Asegúrate de importar los makers desde data.js
 import { neighborhoods } from '../data'; // Asegúrate de importar los makers desde data.js
@@ -16,9 +16,10 @@ const customIcon = L.icon({
 interface MapComponentProps {
   startDate: string;
   endDate: string;
+  showFavorites: boolean; // Nueva prop para controlar si mostrar favoritos
 }
 
-const MapComponent: React.FC<MapComponentProps> = ({ startDate, endDate }) => {
+const MapComponent: React.FC<MapComponentProps> = ({ startDate, endDate, showFavorites }) => {
   const [position, setPosition] = useState<LatLngExpression | null>(null);
   const [filteredEvents, setFilteredEvents] = useState(events); // Al principio, todos los eventos
 
@@ -41,18 +42,28 @@ const MapComponent: React.FC<MapComponentProps> = ({ startDate, endDate }) => {
     }
   }, []);
 
-  // Filtrar los eventos según el rango de fechas
   useEffect(() => {
-    if (startDate && endDate) {
-      const filtered = events.filter((event) => {
-        const eventDate = new Date(event.date);
-        const start = new Date(startDate);
-        const end = new Date(endDate);
-        return eventDate >= start && eventDate <= end;
-      });
-      setFilteredEvents(filtered);
-    }
-  }, [startDate, endDate]);
+    // Filtrar los eventos según el rango de fechas y si estamos mostrando solo favoritos
+    const filtered = events.filter((event) => {
+      const eventDate = new Date(event.date);
+      const start = new Date(startDate);
+      const end = endDate ? new Date(endDate) : null;
+    
+      // Si endDate está vacío, filtrar solo por startDate
+      if (!end) {
+        return eventDate >= start && (showFavorites ? event.isFavorite : true);
+      }
+    
+      // Si endDate tiene valor, filtrar por startDate y endDate
+      return (
+        eventDate >= start &&
+        eventDate <= end &&
+        (showFavorites ? event.isFavorite : true)
+      );
+    });
+    
+    setFilteredEvents(filtered);
+  }, [startDate, endDate, showFavorites]);
 
   if (position === null) {
     return <div>Cargando ubicación...</div>;
@@ -64,7 +75,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ startDate, endDate }) => {
       <MapContainer
         center={[41.124224, 1.240639]}
         zoom={14}
-        style={{ height: '100vh', width: '100%' }}
+        style={{ height: '90vh', width: '100%' }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -94,14 +105,27 @@ const MapComponent: React.FC<MapComponentProps> = ({ startDate, endDate }) => {
           </Marker>
         ))}
 
-        {/* Zonas coloreadas */}
+        {/* Aquí van los vecindarios */}
         {neighborhoods.map((neighborhood) => (
-            <Polyline 
-            positions={neighborhood.positions} 
-            pathOptions={{ color: neighborhood.color }} 
-          />
-        
-          // <Polyline key={neighborhood.name} bounds={neighborhood.positions} pathOptions={{ color: neighborhood.color }} />
+          <>
+            <Polygon
+              positions={neighborhood.positions}
+              pathOptions={{
+                color: 'transparent', 
+                fillColor: neighborhood.color, 
+                fillOpacity: 0.3, 
+              }}
+            >
+              <Popup>{neighborhood.name}</Popup>
+            </Polygon>
+            <Polyline
+              positions={neighborhood.positions}
+              pathOptions={{
+                color: neighborhood.color, 
+                weight: 3, 
+              }}
+            />
+          </>
         ))}
       </MapContainer>
     </div>
