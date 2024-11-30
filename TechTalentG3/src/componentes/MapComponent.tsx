@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { events } from '../data'; // Asegúrate de importar los makers desde data.js
+import { events } from '../data.ts'; // Asegúrate de importar los makers desde data.js
 
 const MapComponent = () => {
   const [position, setPosition] = useState<LatLngExpression | null>(null);
