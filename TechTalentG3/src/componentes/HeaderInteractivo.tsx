@@ -1,25 +1,35 @@
 import React from "react";
-import BotonFiltroMeses from "./BotonFiltroMeses"; // Importar el componente del filtro
-import BotonVerFavs from "./BotonVerFavsONo"
-import BarraBusqueda from "./BarraDeBusqueda"
+import BotonFiltroMeses from "./BotonFiltroMeses";
+import BotonVerFavs from "./BotonVerFavsONo";
+import BarraBusqueda from "./BarraDeBusqueda";
 import BotonMute from "./BotonMute";
+import DateRangePicker from "./RangoFecha";
 
 interface HeaderProps {
-  monthsToShow: number;
+  startDate: string;
+  endDate: string;
+  onStartDateChange: (date: string) => void;
+  onEndDateChange: (date: string) => void;
 }
 
-const Header: React.FC = () => {
+const Header: React.FC<HeaderProps> = ({ startDate, endDate, onStartDateChange, onEndDateChange }) => {
   return (
     <header style={styles.header}>
       <div style={styles.logoContainer}>
         <h1 style={styles.logo}>Eventos Tarragona</h1>
+        <DateRangePicker 
+          startDate={startDate}
+          endDate={endDate}
+          onStartDateChange={onStartDateChange}
+          onEndDateChange={onEndDateChange}
+        />
       </div>
       <nav style={styles.nav}>
         <BotonFiltroMeses monthsToShow={1} />
         <BotonFiltroMeses monthsToShow={3} />
-        <BotonVerFavs/>
-        <BarraBusqueda/>
-        <BotonMute/>
+        <BotonVerFavs />
+        <BarraBusqueda />
+        <BotonMute />
       </nav>
     </header>
   );
