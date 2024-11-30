@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import { LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { events } from '../data'; // Asegúrate de importar los makers desde data.js
+import { neighborhoods } from '../data'; // Asegúrate de importar los makers desde data.js
 
 interface MapComponentProps {
   startDate: string;
@@ -74,6 +75,16 @@ const MapComponent: React.FC<MapComponentProps> = ({ startDate, endDate }) => {
               {event.name} está en: {event.coordinates[0]}, {event.coordinates[1]}
             </Popup>
           </Marker>
+        ))}
+
+        {/* Zonas coloreadas */}
+        {neighborhoods.map((neighborhood) => (
+            <Polyline 
+            positions={neighborhood.positions} 
+            pathOptions={{ color: neighborhood.color }} 
+          />
+        
+          // <Polyline key={neighborhood.name} bounds={neighborhood.positions} pathOptions={{ color: neighborhood.color }} />
         ))}
       </MapContainer>
     </div>
