@@ -7,6 +7,7 @@ import Header from './componentes/HeaderInteractivo';
 function App() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [showFavorites, setShowFavorites] = useState(false); // Estado para mostrar solo favoritos
 
   const handleStartDateChange = (date: string) => {
     setStartDate(date);
@@ -16,18 +17,23 @@ function App() {
     setEndDate(date);
   };
 
+  const toggleFavorites = () => {
+    setShowFavorites((prev) => !prev); // Cambiar el estado de favoritos
+  };
+
   return ( 
     <div className="mapComponent">
-      <h1>My Map View</h1>
       <Header 
         startDate={startDate} 
         endDate={endDate} 
         onStartDateChange={handleStartDateChange} 
         onEndDateChange={handleEndDateChange}
+        toggleFavorites={toggleFavorites} // Pasamos la función al Header
       />
       <MapComponent 
         startDate={startDate} 
         endDate={endDate} 
+        showFavorites={showFavorites} // Pasamos el estado de favoritos al MapComponent
       />
     </div>
   );
