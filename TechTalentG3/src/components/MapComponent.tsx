@@ -1,0 +1,66 @@
+import React, { useEffect, useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { LatLngExpression } from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import { events } from '../data'; // Asegúrate de importar los makers desde data.js
+
+const MapComponent = () => {
+  const [position, setPosition] = useState<LatLngExpression | null>(null);
+
+  useEffect(() => {
+    // Verificar si la geolocalización está disponible en el navegador
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // Obtener latitud y longitud y establecer el estado
+          const { latitude, longitude } = position.coords;
+          setPosition([latitude, longitude]);
+        },
+        (error) => {
+          console.error("Error al obtener la ubicación: ", error);
+          // Si no se puede obtener la ubicación, establecer una ubicación predeterminada
+          setPosition([41.124224, 1.240639]);
+        }
+      );
+    } else {
+      console.error("Geolocalización no soportada");
+      // Si la geolocalización no está disponible, usar una ubicación predeterminada
+      setPosition([41.124224, 1.240639]);
+    }
+  }, []);
+
+  if (position === null) {
+    // Mostrar un cargando hasta que se obtenga la ubicación
+    return <div>Cargando ubicación...</div>;
+  }
+
+  return (
+    <MapContainer
+    center={[41.124224, 1.240639]} // Usar la posición actual
+      zoom={14}
+      style={{ height: '100vh', width: '100%' }}
+    >
+      {/* Capa de mosaico base */}
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      />
+      {/* Marcador en la ubicación actual */}
+      <Marker position={position}>
+        <Popup>
+          ¡Hola! Esta es tu ubicación actual. 🚀
+        </Popup>
+      </Marker>
+      {/* Marcadores de los makers */}
+      {events.map((maker, idx) => (
+        <Marker position={maker.coordinates} key={idx}>
+          <Popup>
+            {maker.name} está en: {maker.coordinates[0]}, {maker.coordinates[1]}
+          </Popup>
+        </Marker>
+      ))}
+    </MapContainer>
+  );
+};
+
+export default MapComponent;
