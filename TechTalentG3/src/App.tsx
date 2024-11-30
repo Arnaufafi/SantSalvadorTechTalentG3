@@ -4,6 +4,9 @@ import './App.css';
 import 'leaflet/dist/leaflet.css';
 import MapComponent from './componentes/MapComponent';
 import Header from './componentes/HeaderInteractivo';
+import EventList from './componentes/EventList';
+import EventModeButton from './componentes/EventModeButton'; // Importa el botón de cambio de modo
+import BotonMute from './componentes/BotonMute';
 
 function App() {
   const [startDate, setStartDate] = useState('');
@@ -15,6 +18,7 @@ function App() {
       utterance.lang = 'es-ES';  // Configura el idioma en español
       speechSynthesis.speak(utterance);
     };
+  const [mode, setMode] = useState<'cine' | 'mapa'>('cine'); // Establece el modo inicial como 'mapa'
 
   const handleStartDateChange = (date: string) => {
     setStartDate(date);
@@ -37,8 +41,13 @@ function App() {
     }
   }, [startDate, endDate, showFavorites]);
 
-  return ( 
+  const toggleMode = () => {
+    setMode((prevMode) => (prevMode === 'cine' ? 'mapa' : 'cine')); // Cambia entre 'cine' y 'mapa'
+  };
+
+  return (
     <div className="mapComponent">
+
       <Header 
         startDate={startDate} 
         endDate={endDate} 
@@ -46,11 +55,22 @@ function App() {
         onEndDateChange={handleEndDateChange}
         toggleFavorites={toggleFavorites} // Pasamos la función al Header
       />
-      <MapComponent 
-        startDate={startDate} 
-        endDate={endDate} 
+      
+      <EventModeButton mode={mode} onToggleMode={toggleMode} /> {/* Agrega el botón para cambiar el modo */}
+
+      {mode === 'mapa' ? (
+        <MapComponent 
+          startDate={startDate} 
+          endDate={endDate} 
         showFavorites={showFavorites} // Pasamos el estado de favoritos al MapComponent
-      />
+        />
+      ) : (
+        <div className="cineContainer">
+    
+      <EventList />
+        </div>
+      )}
+
     </div>
   );
 }

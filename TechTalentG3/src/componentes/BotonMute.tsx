@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
+import "../estilos/BotonMute.css";
 
 const NarratorButton: React.FC = () => {
   // Estado para controlar si el narrador está en mute o no
