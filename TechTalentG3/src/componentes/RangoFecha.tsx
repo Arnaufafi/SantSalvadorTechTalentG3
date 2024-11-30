@@ -1,10 +1,10 @@
 import React from 'react';
 
 interface RangoFechaProps {
-  startDate: string;
-  endDate: string;
-  onStartDateChange: (date: string) => void;
-  onEndDateChange: (date: string) => void;
+  startDate: string;  // startDate es de tipo string, ya que es una fecha en formato "YYYY-MM-DD"
+  endDate: string;    // endDate también es de tipo string
+  onStartDateChange: (date: string) => void;  // onStartDateChange es una función que recibe una cadena de texto (la nueva fecha)
+  onEndDateChange: (date: string) => void;    // onEndDateChange es una función similar
 }
 
 const RangoFecha: React.FC<RangoFechaProps> = ({
@@ -20,8 +20,8 @@ const RangoFecha: React.FC<RangoFechaProps> = ({
         <input
           type="date"
           id="start-date"
-          value={startDate}
-          onChange={(e) => onStartDateChange(e.target.value)}
+          value={startDate}  // El valor es una cadena de texto que representa la fecha
+          onChange={(e) => onStartDateChange(e.target.value)}  // Al cambiar, se pasa el valor de la fecha como string
         />
       </div>
       
@@ -30,8 +30,8 @@ const RangoFecha: React.FC<RangoFechaProps> = ({
         <input
           type="date"
           id="end-date"
-          value={endDate}
-          onChange={(e) => onEndDateChange(e.target.value)}
+          value={endDate}  // Similarmente, el valor es una cadena de texto que representa la fecha
+          onChange={(e) => onEndDateChange(e.target.value)}  // Al cambiar, se pasa el valor de la fecha como string
         />
       </div>
     </div>
