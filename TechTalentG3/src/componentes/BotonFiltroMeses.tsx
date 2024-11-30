@@ -41,7 +41,7 @@ const EventFilterButton: React.FC<EventFilterButtonProps> = ({
 
   return (
     <div>
-      <button onClick={handleFilter}>Próximos {monthsToShow*30} Dias</button>
+      <button onClick={handleFilter}>Filtrar Próximos {monthsToShow*30} Meses</button>
       <ul>
         {filteredEvents.map((event) => (
           <li key={event.name}>
