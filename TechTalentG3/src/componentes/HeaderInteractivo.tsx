@@ -1,14 +1,10 @@
 import React from "react";
 import BotonFiltroMeses from "./BotonFiltroMeses"; // Importar el componente del filtro
-import BotonVerFavs from "./BotonVerFavsONo"
-import BarraBusqueda from "./BarraDeBusqueda"
+import BotonVerFavs from "./BotonVerFavsONo";
+import BarraBusqueda from "./BarraDeBusqueda";
 import BotonMute from "./BotonMute";
 
-interface HeaderProps {
-  monthsToShow: number;
-}
-
-const Header: React.FC<HeaderProps> = () => {
+const Header: React.FC = () => {
   return (
     <header style={styles.header}>
       <div style={styles.logoContainer}>
@@ -17,9 +13,9 @@ const Header: React.FC<HeaderProps> = () => {
       <nav style={styles.nav}>
         <BotonFiltroMeses monthsToShow={1} />
         <BotonFiltroMeses monthsToShow={3} />
-        <BotonVerFavs/>
-        <BarraBusqueda/>
-        <BotonMute/>
+        <BotonVerFavs />
+        <BarraBusqueda />
+        <BotonMute />
       </nav>
     </header>
   );
