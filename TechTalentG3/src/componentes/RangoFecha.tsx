@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface RangoFechaProps {
   startDate: string;
@@ -13,6 +13,16 @@ const RangoFecha: React.FC<RangoFechaProps> = ({
   onStartDateChange,
   onEndDateChange,
 }) => {
+  // Estado para la fecha de inicio por defecto
+  const [defaultStartDate, setDefaultStartDate] = useState<string>('');
+
+  useEffect(() => {
+    // Obtener la fecha de hoy en formato YYYY-MM-DD
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0]; // Formato YYYY-MM-DD
+    setDefaultStartDate(formattedDate);
+  }, []);
+
   return (
     <div>
       <div>
@@ -20,7 +30,7 @@ const RangoFecha: React.FC<RangoFechaProps> = ({
         <input
           type="date"
           id="start-date"
-          value={startDate}
+          value={startDate || defaultStartDate} // Si no hay startDate, usar la fecha por defecto
           onChange={(e) => onStartDateChange(e.target.value)}
         />
       </div>

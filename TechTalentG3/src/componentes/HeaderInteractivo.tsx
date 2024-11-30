@@ -25,8 +25,20 @@ const Header: React.FC<HeaderProps> = ({ startDate, endDate, onStartDateChange, 
         />
       </div>
       <nav style={styles.nav}>
-        <BotonFiltroMeses monthsToShow={1} />
-        <BotonFiltroMeses monthsToShow={3} />
+      <BotonFiltroMeses
+          monthsToShow={1}
+          startDate={startDate}
+          endDate={endDate}
+          onStartDateChange={onStartDateChange}
+          onEndDateChange={onEndDateChange}
+        />
+        <BotonFiltroMeses
+          monthsToShow={3}
+          startDate={startDate}
+          endDate={endDate}
+          onStartDateChange={onStartDateChange}
+          onEndDateChange={onEndDateChange}
+        />
         <BotonVerFavs />
         <BarraBusqueda />
         <BotonMute />
