@@ -8,7 +8,7 @@ interface HeaderProps {
   monthsToShow: number;
 }
 
-const Header: React.FC<HeaderProps> = () => {
+const Header: React.FC = () => {
   return (
     <header style={styles.header}>
       <div style={styles.logoContainer}>
