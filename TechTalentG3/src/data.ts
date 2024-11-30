@@ -316,3 +316,5 @@ export const events: Event[] = [
 		coordinates: [41.161734, 1.24364], 
 	},
 ];
+
+export default Neighborhood;

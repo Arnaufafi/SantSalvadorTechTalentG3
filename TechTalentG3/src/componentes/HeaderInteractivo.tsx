@@ -4,6 +4,10 @@ import BotonVerFavs from "./BotonVerFavsONo";
 import BarraBusqueda from "./BarraDeBusqueda";
 import BotonMute from "./BotonMute";
 
+interface HeaderProps {
+  monthsToShow: number;
+}
+
 const Header: React.FC = () => {
   return (
     <header style={styles.header}>
