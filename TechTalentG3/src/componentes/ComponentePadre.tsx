@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RangoFecha from './RangoFecha'; // Importamos el componente RangoFecha
 import MapComponent from './MapComponent'; // Importamos el componente MapComponent
+import EventFilterButton from './BotonFiltroMeses';
 
 const ComponentePadre = () => {
   const [startDate, setStartDate] = useState('');
