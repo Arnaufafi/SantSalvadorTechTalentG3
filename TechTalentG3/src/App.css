@@ -1,6 +1,30 @@
 .leaflet-container{
     width: 100vw;
 }
-.body {
+body {
     width: 100vw;
+    overflow: hidden;
 }
+header{
+    height: 13vh;
+}
+input[type="date"] {
+  width: 125px;          /* Ajusta el ancho */
+  padding: 8px;          /* Agrega relleno dentro del campo */
+  font-size: 16px;       /* Ajusta el tamaño de la fuente */
+  border: 1px solid #ccc; /* Borde suave */
+  border-radius: 4px;    /* Bordes redondeados */
+  margin-top: 10px;
+  display: inline-block;
+
+}
+input [type="date"] {
+    padding: 22px;
+}
+.inputfin{
+    margin-left: 16.5px;
+}
+label{
+    margin-left: 42px;
+}
+

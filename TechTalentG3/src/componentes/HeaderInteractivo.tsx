@@ -4,6 +4,7 @@ import BotonVerFavs from "./BotonVerFavsONo";
 import BarraBusqueda from "./BarraDeBusqueda";
 import BotonMute from "./BotonMute";
 import DateRangePicker from "./RangoFecha";
+import logo from '/logo_img.png';
 
 interface HeaderProps {
   startDate: string;
@@ -17,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({ startDate, endDate, onStartDateChange, 
   return (
     <header style={styles.header}>
       <div style={styles.logoContainer}>
-        <h1 style={styles.logo}>Eventos Tarragona</h1>
+        <img src={logo} alt="" width="150px" height=""/>
         <DateRangePicker 
           startDate={startDate}
           endDate={endDate}

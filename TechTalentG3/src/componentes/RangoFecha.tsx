@@ -37,7 +37,7 @@ const RangoFecha: React.FC<RangoFechaProps> = ({
       
       <div>
         <label htmlFor="end-date">Fecha de fin: </label>
-        <input
+        <input className="inputfin"
           type="date"
           id="end-date"
           value={endDate || ''}
