@@ -19,13 +19,13 @@ const MapComponent = () => {
         (error) => {
           console.error("Error al obtener la ubicación: ", error);
           // Si no se puede obtener la ubicación, establecer una ubicación predeterminada
-          setPosition([51.505, -0.09]);
+          setPosition([41.124224, 1.240639]);
         }
       );
     } else {
       console.error("Geolocalización no soportada");
       // Si la geolocalización no está disponible, usar una ubicación predeterminada
-      setPosition([51.505, -0.09]);
+      setPosition([41.124224, 1.240639]);
     }
   }, []);
 
@@ -36,8 +36,8 @@ const MapComponent = () => {
 
   return (
     <MapContainer
-      center={position} // Usar la posición actual
-      zoom={12}
+    center={[41.124224, 1.240639]} // Usar la posición actual
+      zoom={14}
       style={{ height: '100vh', width: '100%' }}
     >
       {/* Capa de mosaico base */}
