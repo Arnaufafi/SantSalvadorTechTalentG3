@@ -1,0 +1,18 @@
+/* Animación de pulsación */
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Clase para el icono con animación */
+  .leaflet-marker-icon.pulse-icon {
+    animation: pulse 1.5s infinite; /* La animación ocurre cada 1.5 segundos */
+  }
+  
